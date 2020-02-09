@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+
+	<style>
+		body{
+			background: linear-gradient(to right,#00cdac, #02aab0)
+		}
+		.row{
+			display: flex;
+			flex-wrap: wrap;
+			padding: 5em;
+		}
+
+		.column{
+			flex: 25%;
+			background: black;
+			padding: 0.1em;
+		}
+
+		.row .column img{
+			width: 100%;
+			border: 2px solid #e5e5e6;
+		}
+		
+	</style>
+
+</head>
+<body>
+	<div class='container'>
+		<div class="wrapper">
+			<label for="file">
+				<input type="file" name="files" id="myfile" hidden directory webkitdirectory> 
+				<input type='button' id="filebtn" onclick="document.getElementById('myfile').click()">
+			</label>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="column"><img src="" alt=""></div>
+		<div class="column"><img src="" alt=""></div>
+		<div class="column"><img src="" alt=""></div>
+		<div class="column">4</div>
+	</div>
+	
+	<script>
+		
+		let file = document.getElementById('myfile');
+		let column = document.querySelectorAll('.column');
+
+		file.onchange = ()=>{
+			for(const key in file.files){
+				if(file.files.hasOwnProperty(key)){
+					const element = file.files[key]
+					if(element.type == 'image/jpeg' || element.type == 'image/png' || element.type == 'image/jpg'){
+						
+						let parentColumn = minParent(column);
+						let img = creatImg(element.webkitRelativePath)
+						parentColumn.appendChild(img);
+
+					}
+				}
+			}
+		}
+
+	
+
+		function minParent(parentNode){
+			let arry = [];
+			parentNode.forEach((el, i) =>{
+				arry[i] = el.children.length;
+			});
+
+
+
+			let min = Math.min.apply(null, arry);
+			for(let i = 0; i < parentNode.length; i++){
+				if(parentNode[i].children.length == min){
+					return parentNode[i]
+				}
+			}
+		}
+
+
+
+		function creatImg(imgsrc){
+			let img = document.createElement("img");
+			img.setAttribute("src", imgsrc)
+			img.className = "imgs";
+			return img;
+		}
+
+	</script>
+</body>
+</html>

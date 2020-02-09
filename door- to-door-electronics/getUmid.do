@@ -1,0 +1,1 @@
+/**/__umid_tiny_jsonp_callback__({"code":200,"data":{"umid":"l447XKN1wxqrzVpJaawqo6IaQ1g1MfBVZuZQVhAPB3XAcOmKkJmcrL+V0RHwWd5fF"}});
